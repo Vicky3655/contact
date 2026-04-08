@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+            <nav class="nav">
+                <div class="logo">Zigi's Plug</div>
+            </nav>
+    </header>
+    <div class="main-wrapper">
+        <section class="form-section">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+            </svg>
+            <h2>Send me an Email</h2>
+            <h3>Let's work together!</h3>
+        </section>
+        <section class="contact-form">
+          <form action="/contact" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="subject" placeholder="Subject" required> <textarea name="message" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+          </form>
+        </section>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+        if ("{{ message }}" === "success") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Message Sent!',
+                text: 'Maryann will contact you soon.',
+                confirmButtonColor: '#E67E22',
+                timer: 3000
+            });
+        }
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+</body>
+</html>
